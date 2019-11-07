@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { ballClock, getResults, results } from "./function"
-import './App.css';
+import { ballClock, results } from "./function";
+import "./App.css";
 
 function App() {
-  const[form, setValues] = useState({ input: ''})
-
-  // const results = getResults()
-  
+  const [form, setValues] = useState({ input: "" });
 
   const handleChange = e =>
     setValues({
@@ -15,30 +12,31 @@ function App() {
       [e.target.name]: e.target.value
     });
 
-    const handleSubmit = e => {
-      e.preventDefault();
-      ballClock(form.input);
-      setValues({ ...form, input:'' });
-    };
+  const handleSubmit = e => {
+    e.preventDefault();
+    ballClock(form.input);
+    setValues({ ...form, input: "" });
+  };
 
   return (
     <div className="App">
       <h1>Ball Clock</h1>
       <form onSubmit={e => handleSubmit(e)}>
         <input
-        className='input'
-        type="input"
-        name="input"
-        placeholder="Input Ball Count"
-        value={form.input}
-        onChange={handleChange}
+          className="input"
+          type="input"
+          name="input"
+          placeholder="Input Ball Count"
+          value={form.input}
+          onChange={handleChange}
         ></input>
-        <button className='button' type="submit" >
+        <button className="button" type="submit">
           Submit
         </button>
-      </form><br/>
-      
-    <h3>{results}</h3>
+      </form>
+      <br />
+
+      <h3>{results}</h3>
     </div>
   );
 }
