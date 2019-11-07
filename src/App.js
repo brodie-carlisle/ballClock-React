@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
+import { ballClock, getResults, results } from "./function"
 import './App.css';
 
 function App() {
+  const[form, setValues] = useState({ input: ''})
+
+  // const results = getResults()
+  
+
+  const handleChange = e =>
+    setValues({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+
+    const handleSubmit = e => {
+      e.preventDefault();
+      ballClock(form.input);
+      setValues({ ...form, input:'' });
+    };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Ball Clock</h1>
+      <form onSubmit={e => handleSubmit(e)}>
+        <input
+        className='input'
+        type="input"
+        name="input"
+        placeholder="Input Ball Count"
+        value={form.input}
+        onChange={handleChange}
+        ></input>
+        <button className='button' type="submit" >
+          Submit
+        </button>
+      </form><br/>
+      
+    <h3>{results}</h3>
     </div>
   );
 }

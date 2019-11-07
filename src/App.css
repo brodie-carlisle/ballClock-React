@@ -1,6 +1,13 @@
 .App {
   text-align: center;
 }
+.input{
+  /* height: 50px; */
+  font-size: 20px;
+}
+.button{
+  font-size: 20px;
+}
 
 .App-logo {
   height: 40vmin;
